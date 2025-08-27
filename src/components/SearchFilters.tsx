@@ -1,0 +1,122 @@
+import React from 'react';
+import { Search, Filter, Calendar } from 'lucide-react';
+
+interface SearchFiltersProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  statusFilter: string;
+  setStatusFilter: (status: string) => void;
+  dateFrom: string;
+  setDateFrom: (date: string) => void;
+  dateTo: string;
+  setDateTo: (date: string) => void;
+}
+
+const SearchFilters: React.FC<SearchFiltersProps> = ({
+  searchTerm,
+  setSearchTerm,
+  statusFilter,
+  setStatusFilter,
+  dateFrom,
+  setDateFrom,
+  dateTo,
+  setDateTo,
+}) => {
+  const clearFilters = () => {
+    setSearchTerm('');
+    setStatusFilter('all');
+    setDateFrom('');
+    setDateTo('');
+  };
+
+  return (
+    <div className="bg-gray-50 border-b border-gray-200 p-6">
+      <div className="flex items-center space-x-2 mb-4">
+        <Filter className="w-5 h-5 text-gray-500" />
+        <h2 className="text-lg font-semibold text-gray-900">Search & Filter</h2>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* Search by Email or Name */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Search by Email or Name
+          </label>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Enter email or name..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Status Filter */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Status
+          </label>
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+          >
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="converted">Converted</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+
+        {/* Date From */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Date From
+          </label>
+          <div className="relative">
+            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="date"
+              value={dateFrom}
+              onChange={(e) => setDateFrom(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Date To */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Date To
+          </label>
+          <div className="relative">
+            <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="date"
+              value={dateTo}
+              onChange={(e) => setDateTo(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Clear Filters Button */}
+      <div className="mt-4 flex justify-end">
+        <button
+          onClick={clearFilters}
+          className="px-6 py-2 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors flex items-center space-x-2"
+        >
+          <Filter className="w-4 h-4" />
+          <span>Clear Filters</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SearchFilters;
