@@ -5,6 +5,48 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased bg-neutral-50;
+  }
+  
+  * {
+    @apply border-neutral-200;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200 bg-white;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-neutral-700 mb-2;
+  }
+  
+  .form-group {
+    @apply mb-6;
+  }
+  
+  .radio-group {
+    @apply space-y-3;
+  }
+  
+  .radio-item {
+    @apply flex items-center space-x-3;
+  }
+  
+  .radio-input {
+    @apply w-4 h-4 text-primary-600 border-neutral-300 focus:ring-primary-500;
+  }
+  
+  .checkbox-group {
+    @apply space-y-3;
+  }
+  
+  .checkbox-item {
+    @apply flex items-center space-x-3;
+  }
+  
+  .checkbox-input {
+    @apply w-4 h-4 text-primary-600 border-neutral-300 rounded focus:ring-primary-500;
   }
 }
